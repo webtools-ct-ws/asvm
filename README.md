@@ -1,7 +1,7 @@
 ASVM
 =======
 
-eOS ActionScript Virtual Machine runtime. Fork of adobe/avmplus.
+eOS ActionScript runtime. Forked from adobe/avmplus and optimized to Python3.
 
 GOALS/MAJOR DIFFERENCES
 =
