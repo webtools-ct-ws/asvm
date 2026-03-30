@@ -53,25 +53,25 @@ import gtest_test_utils
 
 # Checks if this platform can pass empty environment variables to child
 # processes.  We set an env variable to an empty string and invoke a python
-# script in a subprocess to print whether the variable is STILL in
+# script in a subprocess to print(whether the variable is STILL in)
 # os.environ.  We then use 'eval' to parse the child's output so that an
 # exception is thrown if the input is anything other than 'True' nor 'False'.
 os.environ['EMPTY_VAR'] = ''
 child = gtest_test_utils.Subprocess(
-    [sys.executable, '-c', 'import os; print \'EMPTY_VAR\' in os.environ'])
+    [sys.executable, '-c', 'import os; print(\'EMPTY_VAR\' in os.environ']))
 CAN_PASS_EMPTY_ENV = eval(child.output)
 
 
 # Check if this platform can unset environment variables in child processes.
 # We set an env variable to a non-empty string, unset it, and invoke
-# a python script in a subprocess to print whether the variable
+# a python script in a subprocess to print(whether the variable)
 # is NO LONGER in os.environ.
 # We use 'eval' to parse the child's output so that an exception
 # is thrown if the input is neither 'True' nor 'False'.
 os.environ['UNSET_VAR'] = 'X'
 del os.environ['UNSET_VAR']
 child = gtest_test_utils.Subprocess(
-    [sys.executable, '-c', 'import os; print \'UNSET_VAR\' not in os.environ'])
+    [sys.executable, '-c', 'import os; print(\'UNSET_VAR\' not in os.environ']))
 CAN_UNSET_ENV = eval(child.output)
 
 

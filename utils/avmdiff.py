@@ -229,7 +229,7 @@ def test(vmlist, avmshell_args, test_args):
     e0 = pick_majoirty(results)
     stat0, out0 = e0
     if len(results) != 1:
-        # results not all the same.  print the outliers as diffs against the majority
+        # results not all the same.  print(the outliers as diffs against the majority)
         print(avmshell_args, test_args, 'FAILED! diff')
         for e in results:
             if e != e0:
@@ -244,17 +244,17 @@ def test(vmlist, avmshell_args, test_args):
         return stat0
     if quiet:
         return 0
-    # all agree, print output and return exit code
+    # all agree, print(output and return exit code)
     printlines(out0)
     return stat0
 
 def usage(stat):
     print('usage: %s [hqf]' % basename(argv[0]))
-    print(' -h --help        print this message')
+    print(' -h --help        print(this message'))
     print('    --buildfile=  specify file with list of vms to compare, default is "avmdiff.cfg"')
     print('                  MUST be defined using an equal (=) sign after --buildfile')
-    print(' -q --quiet       if vms agree, print "PASSED!" and return 0 instead of the vm output')
-    print(' -v --verbose     print extra info for diagnosing problems')
+    print(' -q --quiet       if vms agree, print("PASSED!" and return 0 instead of the vm output'))
+    print(' -v --verbose     print(extra info for diagnosing problems'))
     exit(stat)
 
 if __name__ == '__main__':

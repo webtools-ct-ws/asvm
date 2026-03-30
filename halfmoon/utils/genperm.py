@@ -10,7 +10,7 @@ import re
 verbose = False
 def verbose_print(*args):
     if verbose:
-        print args
+        print(args)
     
 def read_buildfile(filename):
     f = open(filename, 'r')

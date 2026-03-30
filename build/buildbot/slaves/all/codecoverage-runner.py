@@ -39,9 +39,9 @@ class CodeCoverageRunner:
 
         if self.builds_dir==None:
             # Determine the hash of the change, required to know what the build directory is
-            out,exit = self.run_pipe(cmd="hg log -r %s | head -n 1 | awk -F: '{print $3}'" % self.buildnum)
+            out,exit = self.run_pipe(cmd="hg log -r %s | head -n 1 | awk -F: '{print($3}'" % self.buildnum))
             if out[0].find("unknown revision")!=-1:
-                print "Unable to determine change has for hg revision %s" % (self.buildnum)
+                print("Unable to determine change has for hg revision %s" % (self.buildnum))
                 sys.exit(1)
             self.builds_dir="../../../../../builds/%s-%s/%s" % (self.buildnum, out[0], self.platform)
 
@@ -142,11 +142,11 @@ class CodeCoverageRunner:
         '''
         Compile the shell with the given configure args.
         '''
-        print "\n\n========================================"
-        print "About to compile using the following: "
-        print "shellname: "+shellname
-        print "configure_args: "+configure_args
-        print "env_script: "+env_script
+        print("\n\n========================================")
+        print("About to compile using the following: ")
+        print("shellname: "+shellname)
+        print("configure_args: "+configure_args)
+        print("env_script: "+env_script)
         
         # Make sure that Bullseye is in the path
         env=os.environ
@@ -203,13 +203,13 @@ class CodeCoverageRunner:
         cmd="%s/cov01 --on" % self.bullseye_dir
         stdout,exit = self.run_pipe(cmd=cmd, env=env)
         for line in stdout:
-            print line
+            print(line)
 
         # Use the compile-generic script to compile the shell
         cmd="../all/compile-generic.sh '%s' '%s' '%s' 'false' '' 'objdir-codecoverage' " % (self.buildnum, configure_args, shellname)
         stdout,exit = self.run_pipe(cmd=cmd, env=env)
         for line in stdout:
-            print line
+            print(line)
         if exit:
             print("\n\naborting code coverage run")
             print("message: Build %s failed" % shellname)
@@ -219,7 +219,7 @@ class CodeCoverageRunner:
         cmd="%s/cov01 --off" % self.bullseye_dir
         stdout,exit = self.run_pipe(cmd=cmd, env=env)
         for line in stdout:
-            print line
+            print(line)
 
         # If running in JENKINS then copy binary to buids_dir
         if env["JENKINS_HOME"]:
@@ -235,13 +235,13 @@ class CodeCoverageRunner:
 
 
     def test_shell(self, shellname, suite, vm_args="", config_string="", script_args=""):
-        print "\n\n========================================"
-        print "About to run tests using the following: "
-        print "shellname: "+shellname
-        print "suite: "+suite
-        print "vm_args: "+vm_args
-        print "config_string: "+config_string
-        print "script_args: "+script_args
+        print("\n\n========================================")
+        print("About to run tests using the following: ")
+        print("shellname: "+shellname)
+        print("suite: "+suite)
+        print("vm_args: "+vm_args)
+        print("config_string: "+config_string)
+        print("script_args: "+script_args)
         # Make sure that Bullseye is in the path
         env=os.environ
         if env["PATH"].find(self.bullseye_dir)==-1:
@@ -254,16 +254,16 @@ class CodeCoverageRunner:
              # If running in JENKINS then copy binary to buids_dir
             if env["JENKINS_HOME"]:
                 env["AVM"]="%s/%s" % (self.builds_dir, shellname)
-            print "running acceptance"
+            print("running acceptance")
             # Use the compile-generic script to compile the shell
             cmd="../all/run-acceptance-generic.sh '%s' '%s' '%s' '%s' '%s'" % (self.buildnum, shellname, vm_args, config_string, script_args)
             stdout,exit = self.run_pipe(cmd=cmd, env=env)
             for line in stdout:
-                print line
+                print(line)
             del env["AVM"]
             
         elif suite=="performance":
-            print "running performance"
+            print("running performance")
             env["AVM"]="%s/%s" % (self.builds_dir, shellname)
             env["ASC"]="%s/utils/asc.jar" % (self.root_dir)
             env["BUILTINABC"]="%s/generated/builtin.abc" % (self.root_dir)
@@ -271,21 +271,21 @@ class CodeCoverageRunner:
             cmd="python runtests.py %s" % script_args
             stdout,exit = self.run_pipe(cmd=cmd, env=env, cwd="%s/test/performance"%self.root_dir)
             for line in stdout:
-                print line
+                print(line)
             del env["AVM"]
             del env["ASC"]
             del env["BUILTINABC"]
             del env["SHELLABC"]
 
         elif suite=="selftest":
-            print "running selftest"
+            print("running selftest")
             cmd="%s/%s -Dselftest %s" % (self.builds_dir, shellname, vm_args)
             stdout,exit = self.run_pipe(cmd=cmd, env=env)
             for line in stdout:
-                print line
+                print(line)
 
         elif suite=="commandline":
-            print "running commandline"
+            print("running commandline")
 
             env["AVM"]="%s/%s" % (self.builds_dir, shellname)
             env["ASC"]="%s/utils/asc.jar" % (self.root_dir)
@@ -300,11 +300,11 @@ class CodeCoverageRunner:
                 if line!=None and line.find("AVMFEATURE_DEBUGGER")>-1:
                     debugger=True
                     env["AVMRD"]="%s/%s" % (self.builds_dir, shellname)
-            print "Are we running with debugger: %s" % debugger
+            print("Are we running with debugger: %s" % debugger)
             cmd="python runtests.py"
             stdout,exit = self.run_pipe(cmd=cmd, env=env, cwd="%s/test/cmdline"%self.root_dir)
             for line in stdout:
-                print line
+                print(line)
             del env["AVM"]
             del env["ASC"]
             del env["BUILTINABC"]
@@ -316,12 +316,12 @@ class CodeCoverageRunner:
         cmd="%s/covdir -q -m %s" % (self.bullseye_dir, self.exclude_regions)
         stdout,exit = self.run_pipe(cmd=cmd, env=env, cwd=self.root_dir)
         for line in stdout:
-            print line
+            print(line)
 
 
     def merge_coverage(self):
-        print "\n\n========================================"
-        print "Merging all coverage files together"
+        print("\n\n========================================")
+        print("Merging all coverage files together")
         # Make sure that Bullseye is in the path
         env=os.environ
         if env["PATH"].find(self.bullseye_dir)==-1:
@@ -341,7 +341,7 @@ class CodeCoverageRunner:
         cmd="%s/covmerge -c %s" % (self.bullseye_dir, covfiles)
         stdout,exit = self.run_pipe(cmd=cmd, env=env, cwd=self.builds_dir)
         for line in stdout:
-            print line
+            print(line)
             
         # Get the current coverage data, execute from the root_dir so that path information is correct
         cmd="%s/covdir -q -m %s" % (self.bullseye_dir, self.exclude_regions)
@@ -350,11 +350,11 @@ class CodeCoverageRunner:
         for line in stdout:
             if line.startswith("Total"):
                 Total=line
-            print line
+            print(line)
 
-        print ""
-        print "message: total function coverage:           %s" % Total.split()[5]
-        print "message: total condition/decision coverage: %s" % Total.split()[10]
+        print("")
+        print("message: total function coverage:           %s" % Total.split()[5])
+        print("message: total condition/decision coverage: %s" % Total.split()[10])
         
 
     def run_pipe(self, cmd, cwd=None, env=None):

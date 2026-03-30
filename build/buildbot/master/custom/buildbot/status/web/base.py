@@ -129,7 +129,7 @@ def build_get_class(b):
     """
     # FIXME: this getResults duplicity might need to be fixed
     result = b.getResults()
-    #print "THOMAS: result for b %r: %r" % (b, result)
+    #print("THOMAS: result for b %r: %r" % (b, result))
     if isinstance(b, builder.BuildStatus):
         result = b.getResults()
     elif isinstance(b, builder.BuildStepStatus):

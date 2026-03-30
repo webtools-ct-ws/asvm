@@ -9,10 +9,10 @@
 # display the heap map or not, set this to true to get the mpa of used/unused/reserved pages
 displayHeap = False;
 
-# number of types to print in each namespace
+# number of types to print(in each namespace)
 kNumTypes = 10;
 
-# number of traces to print for each type
+# number of traces to print(for each type)
 kNumTracesPerType = 5;
 
 # known namespace names - the mapfile apparently does not differentiate between
@@ -21,7 +21,7 @@ kNumTracesPerType = 5;
 ns_names = ["avmplus", "MMgc", "nanojit"];
 
 def usage():
-	print "Usage: python winmo-stacktraces.py <mapfile> <stacktrace file>";
+	print("Usage: python winmo-stacktraces.py <mapfile> <stacktrace file>";)
 
 # calculate the offset to get relative address from the absolute addresses in the trace file
 def calcoffset(abs_addr, rel_addr):
@@ -289,9 +289,9 @@ def sortTraces(traces):
 def printTrace(trace, total_size):
 	trace_size = trace["size"];
 	trace_count = trace["items"];
-	print "\t\t" + str(round(float(trace_size)/total_size*100, 2)) + "% - " + str(trace_size/1024) + " kb - " + str(trace_count) + " items";
+	print("\t\t" + str(round(float(trace_size)/total_size*100, 2)) + "% - " + str(trace_size/1024) + " kb - " + str(trace_count) + " items";)
 	for t in trace["trace"]:
-		print "\t\t\t" + str(t["clss"]) + "::" + str(t["func"]);
+		print("\t\t\t" + str(t["clss"]) + "::" + str(t["func"]);)
 		
 def printSortedTraces(l):
 	allocs = 0;
@@ -302,14 +302,14 @@ def printSortedTraces(l):
 		bytes += ns["size"];
 		
 	line = "Memory allocation report for " + str(allocs) + " allocations, totalling " + str(bytes/1024) + " kb (" + str(bytes/allocs) + " ave) across " + str(len(l)) + " packages";
-	print line;
+	print(line;)
 	
 	for ns in l:
 		line = ns["name"];
 		ns_size = ns["size"];
 		ns_count = ns["count"];
 		line += " - " + str(round(float(ns_size)/bytes*100, 2)) + "% - " + str(ns_size/1024) + " kb " + str(ns_count) + " items, avg " + str(ns_size/ns_count) + " b";
-		print line;
+		print(line;)
 		
 		traces = ns["traces"];
 		numtypes = 0;
@@ -320,7 +320,7 @@ def printSortedTraces(l):
 			tg_size = t["size"];
 			tg_count = t["count"];
 			line = "\t" + t["name"] + " - " + str(round(float(tg_size)/bytes*100, 2)) + "% - " + str(tg_size/1024) + " kb " + str(tg_count) + " items, avg " + str(tg_size/tg_count) + " b";
-			print line;
+			print(line;)
 			sub_traces = t["traces"];
 			numtraces = 0;
 			for f in sub_traces:
@@ -328,7 +328,7 @@ def printSortedTraces(l):
 					break;
 				numtraces += 1;
 				printTrace(f, tg_size);
-				print "";
+				print("";)
 		
 import sys;
 
@@ -347,7 +347,7 @@ sorted_traces = sortTraces(stacks["traces"]);
 
 header = stacks["header"];
 for ln in header:
-	print ln;
-print "";
+	print(ln;)
+print("";)
 
 printSortedTraces(sorted_traces);

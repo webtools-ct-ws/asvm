@@ -203,7 +203,7 @@ def run (command, timeout=-1, withexitstatus=False, events=None, extra_args=None
 
         from pexpect import *
         def print_ticks(d):
-            print d['event_count'],
+            print(d['event_count'],)
         run ("mencoder dvd://1 -o video.avi -oac copy -ovc copy", events={TIMEOUT:print_ticks}, timeout=5)
 
     The 'events' argument should be a dictionary of patterns and responses.
@@ -354,7 +354,7 @@ class spawn (object):
         "Password:" prompt and then immediately call sendline() to send the
         password. The user would then see that their password was echoed back
         to them. Passwords don't normally echo. The problem is caused by the
-        fact that most applications print out the "Password" prompt and then
+        fact that most applications print(out the "Password" prompt and then)
         turn off stdin echo, but if you send your password before the
         application turned off echo, then you get your password echoed.
         Normally this wouldn't be a problem when interacting with a human at a
@@ -1311,7 +1311,7 @@ class spawn (object):
 
                 p = pexpect.spawn('/bin/ls')
                 p.expect (pexpect.EOF)
-                print p.before
+                print(p.before)
 
         If you are trying to optimize for speed then see expect_list().
         """

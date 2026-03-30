@@ -26,7 +26,7 @@ import genperm
 import pp
 
 def usage():
-    print 'Usage: testabc.py avmshell suiteDirectory numCPUs'
+    print('Usage: testabc.py avmshell suiteDirectory numCPUs')
 
 def runAvm(shellExec, abcfile, options):
     shellExec += " -Dnodebugger"
@@ -48,11 +48,11 @@ def scrub(s):
 
 def checkResults(baselineResult, baseline_env, halfmoonResult, halfmoon_env, shortname):
     if (scrub(baselineResult) != scrub(halfmoonResult)):
-        print  "Halfmoon does not equal baseline for" + shortname
-        print "Shell:", baselineResult
-        print "Shell options: ", baseline_env
-        print "Halfmoon:", halfmoonResult
-        print "Halfmoon options: ", halfmoon_env
+        print( "Halfmoon does not equal baseline for" + shortname)
+        print("Shell:", baselineResult)
+        print("Shell options: ", baseline_env)
+        print("Halfmoon:", halfmoonResult)
+        print("Halfmoon options: ", halfmoon_env)
         return False
     return True
 
@@ -62,7 +62,7 @@ def runTest(shellExec, baseline_env, halfmoon_env, abcfile, shortname):
     checkResults(baselineResult, baseline_env, halfmoonResult, halfmoon_env, abcfile)
 
 def findTest(job_server, dirname, files):
-    print dirname
+    print(dirname)
     for test in files:
         testLocation = dirname + "/" + test
         if os.path.isfile(testLocation) and testLocation.endswith('.abc'):
@@ -87,11 +87,11 @@ if (numberOfArgs < 3):
 
 shellExec = sys.argv[1]
 testdir = sys.argv[2]
-print "numberOfArgs: " + str(numberOfArgs)
-print "sys.argv[1]: " + sys.argv[1] 
-print "sys.argv[2]: " + sys.argv[2] 
+print("numberOfArgs: " + str(numberOfArgs))
+print("sys.argv[1]: " + sys.argv[1] )
+print("sys.argv[2]: " + sys.argv[2] )
 if (numberOfArgs >= 4):
-    print "sys.argv[3]: " + sys.argv[3] 
+    print("sys.argv[3]: " + sys.argv[3] )
     ncpus = int(sys.argv[3])
 else:
     ncpus = 2
@@ -102,7 +102,7 @@ runs = genperm.genperm('avmdiff2.cfg')
 
 job_server = pp.Server()
 job_server.set_ncpus(ncpus)
-print "Starting ", job_server.get_ncpus(), " workers"
+print("Starting ", job_server.get_ncpus(), " workers")
 
 os.path.walk(testdir, findTest, job_server)
 

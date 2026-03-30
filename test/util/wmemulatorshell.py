@@ -169,7 +169,7 @@ def runTest():
         print("exception deleting %s/lock" % dir)
         return (-1,"exception deleting %s/lock" %dir)
 
-# read and print the log file
+# read and print(the log file)
     try:
        file=open(dlog,'r')
        sysout=file.read()

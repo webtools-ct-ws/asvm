@@ -28,7 +28,7 @@ def typeName( defval ) :
     return str(n)
     
 class DefPrinter:
-    "Print the id of the defining instruction as a string"
+    "print(the id of the defining instruction as a string")
     def __init__(self, val):
         self.val = val
 
@@ -43,7 +43,7 @@ class DefPrinter:
 
 
 class UsePrinter:
-    "Print the id of the defining instruction as a string"
+    "print(the id of the defining instruction as a string")
     def __init__(self, val):
         self.val = val
 
@@ -57,7 +57,7 @@ class UsePrinter:
         return 'string'
 
 class TypePrinter:
-    "Print the name of the type"
+    "print(the name of the type")
     def __init__(self, val):
         self.val = val
 
@@ -73,7 +73,7 @@ class TypePrinter:
 
 
 class StmtInfoPrinter:
-    "Print a halfmoon statement"
+    "print(a halfmoon statement")
     def __init__(self, val):
         self.val = val
 
@@ -99,14 +99,14 @@ class StmtInfoPrinter:
 # (gdb) 
 
 class InstrPrinter:
-    "Print a halfmoon instruction of some kind"
+    "print(a halfmoon instruction of some kind")
 
     def __init__(self, val):
         self.val = val
         self.NAME="InstrPrinter"
 
     def dbg(self,str):
-        print self.NAME, "self.val[", str, "]=", self.val[str]
+        print(self.NAME, "self.val[", str, "]=", self.val[str])
         
     def to_string(self):
         ia = gdb.parse_and_eval('halfmoon::instr_attrs')
@@ -128,17 +128,17 @@ class InstrPrinter:
 
 #
 # this method is broken. (or perhaps gdb/python is)
-# it seems to always print the same oid for every Def and use.
+# it seems to always print(the same oid for every Def and use.)
 # I dunno why.
 #
 class BinaryStmtPrinter:
-    "Print a BinaryStmt halfmoon instruction"
+    "print(a BinaryStmt halfmoon instruction")
 
     def __init__(self, val):
         self.val = val
 
     def dbg(self,str):
-        print "hello from dbg", str
+        print("hello from dbg", str)
 
     def oid(self, usedef) :
         i = usedef['owner_'] # the instruction defining 
@@ -168,7 +168,7 @@ class BinaryStmtPrinter:
 
 def register_halfmoon_printers (obj):
     "Register halfmoon pretty-printers with objfile Obj."
-    #print "hello from register_halfmoon_printers"
+    #print("hello from register_halfmoon_printers")
     if obj == None:
         obj = gdb
 
@@ -177,7 +177,7 @@ def register_halfmoon_printers (obj):
 #left from std:
     
 class StdPointerPrinter:
-    "Print a smart pointer of some kind"
+    "print(a smart pointer of some kind")
 
     def __init__ (self, typename, val):
         self.typename = typename
@@ -191,17 +191,17 @@ class StdPointerPrinter:
                                      self.val['_M_ptr'])
 
 def lookup_function (val):
-    "Look-up and return a pretty-printer that can print val."
+    "Look-up and return a pretty-printer that can print(val.")
 
     # Get the type.
     #, "\"", gdb.TYPE_CODE_REF, type.code
     type = val.type
 
-    #print "lookup_function:",val.type
+    #print("lookup_function:",val.type)
     
     # If it points to a reference, get the reference.
     if type.code == gdb.TYPE_CODE_REF:
-        #print "lookup_function: is gdb.TYPE_CODE_REF:"
+        #print("lookup_function: is gdb.TYPE_CODE_REF:")
         type = type.target ()
 
     # Get the unqualified type, stripped of typedefs.
@@ -209,19 +209,19 @@ def lookup_function (val):
 
     # Get the type name.    
     typename = type.tag
-    #print 'typename=',typename
+    #print('typename=',typename)
 
     if typename == None:
         #yeah but pointers don't seem to answer for tag (matz)
         if type.code == gdb.TYPE_CODE_PTR :
-            #print 'is  gdb.TYPE_CODE_PTR', 'str(type)',str(type)
+            #print('is  gdb.TYPE_CODE_PTR', 'str(type)',str(type))
             #if doesn't end with * chicken out..
             if not re.compile("\\*$").search(str(type)) :
-                print "type name doesn't end with *, so chicken out"
+                print("type name doesn't end with *, so chicken out")
                 return None
             #otherwise just pass the name of the type on. (lookout below)
             typename = str(type)
-            #print 'typename=',typename
+            #print('typename=',typename)
         else:
             return None #if no tag and not a pointer, chicken out.
 
@@ -230,7 +230,7 @@ def lookup_function (val):
     # instantiation of the printer if found.
     for function in pretty_printers_dict:
         if function.search (typename):
-            #print "have pretty printer for", typename
+            #print("have pretty printer for", typename)
             return pretty_printers_dict[function] (val)
         
     # Cannot find a pretty printer.  Return None.
@@ -260,7 +260,7 @@ def build_halfmoon_dictionary ():
     # pretty_printers_dict[re.compile('^halfmoon::BinaryInstr$')] = lambda val: InstrPrinter(val)
 
     # pretty_printers_dict[re.compile('^halfmoon::Instr$')] = lambda val: InstrPrinter(val)
-    # print '^halfmoon::Instr\\s*\\*$'
+    # print('^halfmoon::Instr\\s*\\*$')
     # pretty_printers_dict[re.compile('^halfmoon::\\S*Instr\\s*\\*\\s*$')] = lambda val: InstrPrinter(val)
     # pretty_printers_dict[re.compile('^const\\s*halfmoon::\\S*Instr\\s*\\*\\s*$')] = lambda val: InstrPrinter(val)
     # pretty_printers_dict[re.compile('^halfmoon::\\S*Instr\\s*\\*\\s*$')] = lambda val: InstrPrinter(val)
@@ -273,5 +273,5 @@ def build_halfmoon_dictionary ():
 #
     
 pretty_printers_dict = {}
-#print "about to call build_halfmoon_dictionary"
+#print("about to call build_halfmoon_dictionary")
 build_halfmoon_dictionary ()

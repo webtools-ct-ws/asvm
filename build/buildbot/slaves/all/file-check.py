@@ -16,8 +16,8 @@ import sys
 
 
 def usage():
-    print "file-check.py <dir>"
-    print "Must pass in a directory <dir>."
+    print("file-check.py <dir>")
+    print("Must pass in a directory <dir>.")
     exit(1)
 
 try:
@@ -145,37 +145,37 @@ for (basepath, children) in walktree(base_dir, False):
 
 
 if mpl1_files or mpl_files or ending_file:
-    print "buildbot_status: WARNINGS"
+    print("buildbot_status: WARNINGS")
 else:
-    print "status: PASSED"
+    print("status: PASSED")
 
 if mpl1_files:
-    print ""
-    print ""
-    print "MPL1 Issues:"
-    print "============"
+    print("")
+    print("")
+    print("MPL1 Issues:")
+    print("============")
     for file in mpl1_files:
-        print file.replace(base_dir, '')
+        print(file.replace(base_dir, ''))
 
 if mpl_files:
-    print ""
-    print ""
-    print "MPL Issues:"
-    print "==========="
+    print("")
+    print("")
+    print("MPL Issues:")
+    print("===========")
     for file in mpl_files:
-        print file.replace(base_dir, '')
+        print(file.replace(base_dir, ''))
 
 if ending_file:
-    print ""
-    print ""
-    print "Line Ending Issues:"
-    print "==================="
+    print("")
+    print("")
+    print("Line Ending Issues:")
+    print("===================")
     for file in ending_file:
-        print file.replace(base_dir, '')
+        print(file.replace(base_dir, ''))
 
-print ""
-print ""
-print "number of MPL Issues         : %d " % len(mpl_files)
-print "number of MPL1 Issues        : %d " % len(mpl1_files)
-print "number of Line Ending Issues : %d " % len(ending_file)
-print "number of files              : %d " % file_count
+print("")
+print("")
+print("number of MPL Issues         : %d " % len(mpl_files))
+print("number of MPL1 Issues        : %d " % len(mpl1_files))
+print("number of Line Ending Issues : %d " % len(ending_file))
+print("number of files              : %d " % file_count)

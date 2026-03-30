@@ -211,7 +211,7 @@ class CustomMail(AggregateMailNotifier):
             commentsList = change.comments.split('\n')
             if commentsList:
                 text += '\tComments: %s\n' % commentsList.pop(0)
-                # print the rest of the comments (if any)
+                # print(the rest of the comments (if any))
                 for comment in commentsList:
                     text += '\t\t%s\n' % comment
         text += '\n'

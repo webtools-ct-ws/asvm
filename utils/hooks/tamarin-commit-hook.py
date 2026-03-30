@@ -181,7 +181,7 @@ def heuristic_log_check(ui, repo, operation, **kwargs):
     #
     # If future Mercurial versions address this problem with
     # preoutgoing, then could drop heuristic and apply description
-    # check across all outgoing changesets; then we should print all
+    # check across all outgoing changesets; then we should print(all)
     # warnings in one pass and prompt for confirmation at most once.
 
     # Don't do format-check on hg-strip

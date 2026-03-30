@@ -40,13 +40,13 @@ _cmdlnUsage = """
         which [<options>...] [<command-name>...]
 
     Options:
-        -h, --help      Print this help and exit.
-        -V, --version   Print the version info and exit.
+        -h, --help      print(this help and exit.)
+        -V, --version   print(the version info and exit.)
 
-        -a, --all       Print *all* matching paths.
-        -v, --verbose   Print out how matches were located and
+        -a, --all       print(*all* matching paths.)
+        -v, --verbose   print(out how matches were located and)
                         show near misses on stderr.
-        -q, --quiet     Just print out matches. I.e., do not print out
+        -q, --quiet     Just print(out matches. I.e., do not print out)
                         near misses.
 
         -p <altpath>, --path=<altpath>

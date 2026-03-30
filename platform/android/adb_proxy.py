@@ -30,7 +30,7 @@ def main(argv=None):
 
 
     cmd="adb %s" % (args)
-    #print "cmd: %s" % cmd
+    #print("cmd: %s" % cmd)
     while attempt < ADB_MAX_ATTEMPTS:
 
         attempt=attempt+1
@@ -71,7 +71,7 @@ def main(argv=None):
         return stdout
 
 if __name__ == "__main__":
-    print main()
+    print(main())
 
 
 

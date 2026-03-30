@@ -13,7 +13,7 @@ import subprocess
 import time
 
 def usage():
-    print 'Usage: testabc.py avmshell suiteDirectory'
+    print('Usage: testabc.py avmshell suiteDirectory')
 
 def runAvm(shellExec, abcfile, options):
     shellExec += " -Dnodebugger -Dtimeout"
@@ -31,9 +31,9 @@ def scrub(s):
 
 def checkResults(baselineResult, halfmoonResult, shortname):
     if (scrub(baselineResult) != scrub(halfmoonResult)):
-        print "Halfmoon does not equal CodegenLIR for", shortname
-        print "Shell:", baselineResult
-        print "Halfmoon:", halfmoonResult
+        print("Halfmoon does not equal CodegenLIR for", shortname)
+        print("Shell:", baselineResult)
+        print("Halfmoon:", halfmoonResult)
         return False
     return True
 
@@ -43,7 +43,7 @@ def runTest(abcfile, shortname):
     checkResults(baselineResult, halfmoonResult, abcfile)
 
 def findTest(arg, dirname, files):
-    print dirname
+    print(dirname)
     for test in files:
         testLocation = os.path.abspath(dirname + "/" + test)
         if os.path.isfile(testLocation) and testLocation.endswith('.abc'):

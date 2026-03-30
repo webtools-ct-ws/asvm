@@ -28,7 +28,7 @@ def warn_notwriteable(file):
 classpath = os.environ.get('ASC')
 if classpath == None:
     classpath = "../utils/asc.jar"
-    #print "ERROR: ASC environment variable must point to asc.jar"
+    #print("ERROR: ASC environment variable must point to asc.jar")
     #exit(1)
 
 javacmd = "java -ea -DAS3 -DAVMPLUS -classpath "+classpath

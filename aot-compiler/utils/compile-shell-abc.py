@@ -58,7 +58,7 @@ class ShellCompiler:
         finally:
             try:
                 if self.debug :
-                    print "debug: leaving tree", self.work_dir
+                    print("debug: leaving tree", self.work_dir)
                 else:
                     shutil.rmtree(self.work_dir) # delete directory
     		except OSError, e:
@@ -87,12 +87,12 @@ class ShellCompiler:
             print(sys.exc_info()[1])
             self.usage(2)
 
-        print "opts",opts
+        print("opts",opts)
         for o,v in opts:
             if o in ('--sdk',):
                 dir_arg = v
                 if not os.path.isdir(dir_arg) :
-                    print "arg to --sdk must be a directory"
+                    print("arg to --sdk must be a directory")
                     self.usage(3)
                 self.sdk_dir=os.path.abspath(dir_arg)
             if o in ('--arch',):
@@ -119,7 +119,7 @@ class ShellCompiler:
 
         #echo the output of the compiler ont stdout of this script so user can see
         for line in stdout:
-            print line
+            print(line)
 
 
 	def AOT_link(self):
@@ -133,9 +133,9 @@ class ShellCompiler:
             
         stdout,exit = self.run_pipe(cmd=cmd,cwd=self.work_dir)
 
-        #print ld output too
+        #print(ld output too)
         for line in stdout:
-            print line
+            print(line)
 
 
     #aotInfo.o Assert_0.o Utils_1.o abs_2.o -o abs

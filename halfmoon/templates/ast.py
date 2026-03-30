@@ -46,7 +46,7 @@ class Type:
     self.basename = basename if basename is not None else name
     self.nullable = nullable
     self.cgoverride = cgoverride
-    # print 'name = %s, basename = %s, self.name = %s, self.basename = %s' % (name, basename, self.name, self.basename)
+    # print('name = %s, basename = %s, self.name = %s, self.basename = %s' % (name, basename, self.name, self.basename))
     
   def hasNull(self):
     return self.nullable == NULL_ALLOWED
@@ -174,7 +174,7 @@ subtypes = closure({
   'ScriptObject': ['Array', 'Class', 'Function']
 })
 
-# print 'HEY subtypes = \n%s' % '\n'.join(
+# print('HEY subtypes = \n%s' % '\n'.join()
 #   ["%s: [%s]" % (k, ','.join(v for v in subtypes[k])) for k in subtypes.keys()])
 
 # name -> type
@@ -1553,7 +1553,7 @@ def addReturnStmt(tem, retargs, defmap):
 # process body statements, infer/check types
 #
 def processTem(tem, defmap, stack):
-  # print '>>> %s\n' % tem.dump()
+  # print('>>> %s\n' % tem.dump())
   try:
     if tem in stack:
       raise ParseError("recursion not supported")
@@ -1616,10 +1616,10 @@ def processTem(tem, defmap, stack):
 
     setCurItem(savecuritem)
     stack.pop()
-    # print '<<< %s\n' % tem.dump()
+    # print('<<< %s\n' % tem.dump())
     
   except ParseError as e:
-    print 'parse error: %s' % e.message()
+    print('parse error: %s' % e.message())
     sys.exit(1)
 
 # create a map from a list of defs, check for dupes

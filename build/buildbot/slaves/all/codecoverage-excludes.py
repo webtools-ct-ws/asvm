@@ -57,5 +57,5 @@ exclude_pattern+="'!avmplus::MathUtils::nextDigit(double*)' "
 exclude_pattern+="'!avmplus::MathUtils::powerOfTen(int32_t,double)' "
 exclude_pattern+="'!avmplus::MathUtils::roundInt(double)' "
 
-# print exclude pattern
+# print(exclude pattern)
 print(exclude_pattern)

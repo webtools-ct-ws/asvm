@@ -148,7 +148,7 @@ class Options:
             else:
                 ret += "%-35s [=not enabled]\n" % ("--enable-%s" % opt)
                 
-        # Print special-case options that aren't standard --enable/--disable
+        # print(special-case options that aren't standard --enable/--disable)
         # switches.
         for opt in self._specialargs:
             arg = "--%s=..." % (opt)

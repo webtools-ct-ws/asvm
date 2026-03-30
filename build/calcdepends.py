@@ -39,18 +39,18 @@ def rebuildNeeded(file, dependencies, verbose):
     f = _statcache.getMTime(file)
     if f == 0:
         if verbose:
-            print >>sys.stderr, "Target %s doesn't exist" % file
+            print(>>sys.stderr, "Target %s doesn't exist" % file)
         return True
 
     for dep in dependencies:
         d = _statcache.getMTime(dep)
         if d == 0:
             if verbose:
-                print >>sys.stderr, "Target %s missing dependency %s" % (file, dep)
+                print(>>sys.stderr, "Target %s missing dependency %s" % (file, dep))
             return True
         if d > f:
             if verbose:
-                print >>sys.stderr, "Target %s older than dependency %s" % (file, dep)
+                print(>>sys.stderr, "Target %s older than dependency %s" % (file, dep))
             return True
 
     return False
@@ -75,7 +75,7 @@ def rebuildsNeeded(files, outfile, verbose, quiet):
         istream.close()
     else:
         if not quiet:
-            print >>sys.stderr, "Writing %s: doesn't exist" % outfile
+            print(>>sys.stderr, "Writing %s: doesn't exist" % outfile)
         do_write = True
 
     newrebuilds = []
@@ -93,12 +93,12 @@ def rebuildsNeeded(files, outfile, verbose, quiet):
 
         except IOError:
             if verbose:
-                print >>sys.stderr, "IOError attempting to check rebuildNeeded %s %s" % (objfile, depfile)
+                print(>>sys.stderr, "IOError attempting to check rebuildNeeded %s %s" % (objfile, depfile))
             pass
 
         if rebuild:
             if verbose:
-                print >>sys.stderr, "Scheduling %s for rebuilding" % objfile
+                print(>>sys.stderr, "Scheduling %s for rebuilding" % objfile)
             newrebuilds.append(objfile)
 
             if objfile in oldrebuilds:
@@ -108,7 +108,7 @@ def rebuildsNeeded(files, outfile, verbose, quiet):
 
     if do_write or len(oldrebuilds):
         if not quiet:
-            print "Building %s" % outfile
+            print("Building %s" % outfile)
         ostream = open(outfile, "w")
         for objfile in newrebuilds:
             ostream.write(objfile + ": FORCE\n")

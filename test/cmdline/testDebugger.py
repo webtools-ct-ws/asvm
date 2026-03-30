@@ -109,7 +109,7 @@ def run():
     r.run_test(
       'debugger print',
       '%s -d testdata/debug.abc'%r.avmrd,
-      input='print Function.\nquit\n',
+      input='print(Function.\nquit\n',)
       expectedout=['const length = 1','function get prototype\(\) = Function']
     )
 

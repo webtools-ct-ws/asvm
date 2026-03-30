@@ -151,7 +151,7 @@ class StatusClientPerspective(SCP):
         # TODO: make the HTMLLog adapter
         rlog = IRemote(log, None)
         if not rlog:
-            print "hey, couldn't adapt %s to IRemote" % log
+            print("hey, couldn't adapt %s to IRemote" % log)
         self.client.callRemote("logStarted",
                                build.getBuilder().getName(), self.getSourceStampDict(build),
                                step.getName(), IRemote(step),

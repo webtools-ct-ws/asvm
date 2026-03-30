@@ -34,8 +34,8 @@ def _onerror(func, path, exc_info):
             os.chmod(path, stat.S_IWUSR)
             func(path)
         except Exception,e:
-            print e
-            print "buildbot_status: WARNINGS"
+            print(e)
+            print("buildbot_status: WARNINGS")
             pass
 
 def main():
@@ -59,11 +59,11 @@ def main():
              timestamp = os.path.getmtime(os.path.join(r,dir))
              if now-timestamp > numdays:
                  try:
-                      print "Removing: %s -- Date: %s" % (os.path.join(r,dir), date.fromtimestamp(timestamp))
+                      print("Removing: %s -- Date: %s" % (os.path.join(r,dir), date.fromtimestamp(timestamp)))
                       shutil.rmtree(os.path.join(r,dir), onerror=_onerror)  # comment to test
                  except Exception,e:
-                      print e
-                      print "buildbot_status: WARNINGS"
+                      print(e)
+                      print("buildbot_status: WARNINGS")
                       pass
                       
 if __name__ == "__main__":

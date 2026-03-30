@@ -349,7 +349,7 @@ instr_names = [#  "setslot", "atom2scriptobject", "getslot", "cknullobject", "lo
 def set_var( skip_list ):
     return "DEBUG_STUB_LIST=" + skip_list + "\\; "
     
-#print instr_names
+#print(instr_names)
 
 xx=[ "setslot", "atom2scriptobject", "getslot", "cknullobject", "loadenv",  "callmethod", "return","getouterscope"]
 
@@ -360,16 +360,16 @@ skip_list = ''
 
 for name in instr_names:
     skip_list += "\\;" + name
-    #print "set_var=", set_var
+    #print("set_var=", set_var)
     #rc = os.system("env " + set_var + " printenv DEBUG_STUB_LIST")
     cmd = "env INLINE=1 MODE=4 %s %s" % ( set_var(skip_list) , avm_cmd)
     rc = os.system(cmd)
-    print "rc=", rc
+    print("rc=", rc)
     if rc != 0 :
-        print "FAILED: ", cmd
+        print("FAILED: ", cmd)
     else:
-        print "worked: ", cmd
-        print "last stub added was", name
+        print("worked: ", cmd)
+        print("last stub added was", name)
         break
     
 

@@ -26,24 +26,24 @@ class RegenerateBaseLineData:
         self.run()
         
     def vprint(self,msg):
-        print msg
+        print(msg)
         
     def usage(self,c):
-        print ''
-        print 'usage: %s [options] [test/dir]' % os.path.basename(argv[0])
-        print ' Default Usage: This script will regenerate performance data for the given revision'
-        print ' and test(s) specified.  If no test/dir is specified, all performance tests will'
-        print ' be run for the given revision.'
-        #print ' Options that can have multiple values must be comma delimited (no spaces).'
-        print ''
-        print ' e.g: %s -r 703 -l http://10.60.48.47/builds -b tamarin-central jsbench' % os.path.basename(argv[0])
-        print ''
-        print ' -r specify revision (build) to regenerate data for (required)'
-        print ' -b specify branch [tamarin-redux|tamarin-central|tamarin-flash] (replaces $branch)'
-        #print ' -m specify milestone(s) [release|iteration|weekly|all]'
-        #print ' -a specify different avmshell name (replaces $)'
-        print ' -l specify builds location (replaces $vmbuilds)'
-        print ' -h --help print this message'
+        print('')
+        print('usage: %s [options] [test/dir]' % os.path.basename(argv[0]))
+        print(' Default Usage: This script will regenerate performance data for the given revision')
+        print(' and test(s) specified.  If no test/dir is specified, all performance tests will')
+        print(' be run for the given revision.')
+        #print(' Options that can have multiple values must be comma delimited (no spaces).')
+        print('')
+        print(' e.g: %s -r 703 -l http://10.60.48.47/builds -b tamarin-central jsbench' % os.path.basename(argv[0]))
+        print('')
+        print(' -r specify revision (build) to regenerate data for (required)')
+        print(' -b specify branch [tamarin-redux|tamarin-central|tamarin-flash] (replaces $branch)')
+        #print(' -m specify milestone(s) [release|iteration|weekly|all]')
+        #print(' -a specify different avmshell name (replaces $)')
+        print(' -l specify builds location (replaces $vmbuilds)')
+        print(' -h --help print this message')
         exit(c)
         
     def setOptions(self):

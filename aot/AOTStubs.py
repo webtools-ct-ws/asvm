@@ -26,8 +26,8 @@ def runProcess(p, msg, ignoreErrors = False):
     if not ignoreErrors:
         if not p.returncode == 0:
             if stderrdata:
-                print stderrdata
-            print msg
+                print(stderrdata)
+            print(msg)
             sys.exit(1)
     return (stdoutdata, stderrdata)
 
@@ -35,7 +35,7 @@ def createProcess(exe, args, verbose = False):
     cmdargs = [exe] + args
     
     if verbose:
-        print "running: " + " ".join(cmdargs)
+        print("running: " + " ".join(cmdargs))
     
     return subprocess.Popen(cmdargs, executable=exe, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -71,7 +71,7 @@ def demangle(n):
     if len(functype) > 2:
         return "template %s %s(%s);" % (getType(functype[0]), getType(functype[1]), ", ".join(map(getType, args)).strip())
     else:
-        # print "# ignoring non-templated function: %s" % n
+        # print("# ignoring non-templated function: %s" % n)
         return None
 
 
@@ -93,7 +93,7 @@ def updateStubOrder(fn):
             stuborder[n] += int(bits[1])
         except KeyError:
             stuborder[n] = int(bits[1])
-    print "# Found %d stubs in %s" % (count, fn)
+    print("# Found %d stubs in %s" % (count, fn))
             
 def updateStubOrdering(files):
     global stuborder
@@ -103,7 +103,7 @@ def updateStubOrdering(files):
         stuborder = pickle.load(f)
         f.close()
     else:
-        print "No stub ordering file found: '%s'" % os.path.abspath(pickleFile)
+        print("No stub ordering file found: '%s'" % os.path.abspath(pickleFile))
     
     if len(files) > 0:
         for fn in files:
@@ -117,7 +117,7 @@ def dumpStubOrderInfo(files):
     updateStubOrdering(files)
     
     for (s,c) in stuborder.iteritems():
-        print "%s | %d" % (s, c)
+        print("%s | %d" % (s, c))
 
 def getStubSortOrder(stub):
     global stuborder
@@ -165,10 +165,10 @@ def genCPPFiles(stubs, filenum):
         hfile = "AOTStubs-%05d.cpp" % filenum
         hfile = open(hfile, "w")
     
-        print >>hfile, standardHeader
-        print >>hfile, "#include \"AOTStubs.h\""
+        print(>>hfile, standardHeader)
+        print(>>hfile, "#include \"AOTStubs.h\"")
         for x in xs:
-            print >>hfile, (x[1])
+            print(>>hfile, (x[1]))
         hfile.close()
 
         filenum += 1

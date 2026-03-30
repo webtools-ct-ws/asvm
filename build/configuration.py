@@ -10,14 +10,14 @@ import re
 
 def writeFileIfChanged(path, contents):
     """Write some contents to a file. Avoids modifying the file timestamp if the file contents already match."""
-    print "Generating " + path + "...",
+    print("Generating " + path + "...",)
     try:
         outf = open(path, "r")
         oldcontents = outf.read()
         outf.close()
 
         if oldcontents == contents:
-            print "not changed"
+            print("not changed")
             return
     except IOError:
         pass

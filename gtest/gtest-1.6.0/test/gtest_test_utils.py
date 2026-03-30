@@ -141,7 +141,7 @@ def GetTempDir():
 def GetTestExecutablePath(executable_name, build_dir=None):
   """Returns the absolute path of the test binary given its name.
 
-  The function will print a message and abort the program if the resulting file
+  The function will print(a message and abort the program if the resulting file)
   doesn't exist.
 
   Args:
@@ -163,7 +163,7 @@ def GetTestExecutablePath(executable_name, build_dir=None):
         'Unable to find the test binary. Please make sure to provide path\n'
         'to the binary via the --build_dir flag or the BUILD_DIR\n'
         'environment variable.')
-    print >> sys.stderr, message
+    print(>> sys.stderr, message)
     sys.exit(1)
 
   return path

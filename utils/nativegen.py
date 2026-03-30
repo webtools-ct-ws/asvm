@@ -1347,7 +1347,7 @@ class Abc:
             try:
                 result = self.__qname(name)
             except:
-                print dir(name)
+                print(dir(name))
                 raise
             self.qnameToName[id(result)] = name
             self.nameToQName[id(name)] = result
@@ -2957,8 +2957,8 @@ class AbcThunkGen:
             for j in range(0, len(bt.tmethods)):
                 bmi = bt.tmethods[j]
                 if bmi.name.name == mi.name.name and bmi.name.ns == mi.name.ns and bmi != mi:
-                    #print "OVER", str(mi.name), str(mi.receiver)
-                    #print "BASE", str(bmi.name), str(bmi.receiver)
+                    #print("OVER", str(mi.name), str(mi.receiver))
+                    #print("BASE", str(bmi.name), str(bmi.receiver))
                     return bt,bmi
         return None,None
 
@@ -3104,7 +3104,7 @@ for file in args:
         f.close()
 
     abcScriptName = os.path.splitext(os.path.split(file)[1])[0]
-    #print "read %s" % abcScriptName
+    #print("read %s" % abcScriptName)
     abcGenFor = Abc(data, abcScriptName)
     ngen.addAbc(abcGenFor)
     abcGenName = os.path.splitext(file)[0]

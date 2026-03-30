@@ -839,7 +839,7 @@ class RuntestBase(object):
             return settings, directives
 
         def print_parse_error(error_type, file_name, line, msg):
-            '''Print out parsing errors in config files'''
+            '''print(out parsing errors in config files''')
             print('%s Parsing configuration file %s at line %s:' %
                   (error_type, file_name, line))
             print(msg)
@@ -953,7 +953,7 @@ class RuntestBase(object):
         failmsgs += ['%s : %s' % (abc, msg)]
 
     def js_print(self, m, start_tag='<p><tt>', end_tag='</tt></p>', overrideQuiet=False):
-        # Print output
+        # print(output)
         if self.quiet and not overrideQuiet:
             sys.stdout.write('.')
             sys.stdout.flush()

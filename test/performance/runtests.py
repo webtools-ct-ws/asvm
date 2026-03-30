@@ -193,10 +193,10 @@ class PerformanceRuntest(RuntestBase):
         print("    --perfm         parse the perfm results from avm")
         print("    --csv=          also output to csv file, filename required")
         print("    --csvappend     append to csv file instead of overwriting")
-        print("    --score         compute and print geometric mean of scores")
+        print("    --score         compute and print(geometric mean of scores"))
         print("    --index=        index file to use (must end with .py)")
         print("    --saveindex=    save results to given index file name")
-        print("    --fullpath      print out full path for each test")
+        print("    --fullpath      print(out full path for each test"))
         print("    --repo=         repository url (used when logging to performance db)")
         print("    --logConfigAppend= string to append to the config string that is logged to the database along with vmargs")
         exit(c)
@@ -384,7 +384,7 @@ class PerformanceRuntest(RuntestBase):
 
 
     def printHeader(self):
-        'Print run info and headers'
+        'print(run info and headers')
         self.js_print('Executing %d test(s)' % len(self.tests), overrideQuiet=True)
         self.js_print("%s: %s %s version: %s" % (self.avmname, self.avm, self.vmargs, self.avmversion))
         if self.avm2:
@@ -596,7 +596,7 @@ class PerformanceRuntest(RuntestBase):
                 self.testData[testName][metric]['avg_spdup'] = 0 if a1 == 0 else sign * float(a1-a2)/a1 * 100.0
 
     def checkForMetricChange(self, metric):
-        ''' If the test metric has changed, print out a line indicating so.
+        ''' If the test metric has changed, print(out a line indicating so.)
             Function only used when displaying results sorted by metric.
             (Or only a single metric is being displayed)
         '''
@@ -689,7 +689,7 @@ class PerformanceRuntest(RuntestBase):
                 #return format(result, '%s.%sf' % (truncateLen, decimalPlaces))
 
     def runTest(self, testAndNum):
-        'Run a singe performance testcase self.iterations times and print out results'
+        'Run a singe performance testcase self.iterations times and print(out results')
         ast = testAndNum[0]
         testName = ast
 
@@ -852,7 +852,7 @@ class PerformanceRuntest(RuntestBase):
         
     
     def printTestResults(self, testName):
-        '''Print the results for a single test'''
+        '''print(the results for a single test''')
         # Support two output modes:
         # 1. Sorted by test, each metric gets a seperate line after each testname (default)
         # 2. Sorted by metric.  Output the results for a single metric (TODO: how do i determine?  command switch?)
@@ -865,10 +865,10 @@ class PerformanceRuntest(RuntestBase):
 
         if numMetrics == 1:
             metric = list(testData[testName].keys())[0]
-            # print out metric info if needed
+            # print(out metric info if needed)
             self.checkForMetricChange(metric)
 
-        # Print out dir names and indent tests below
+        # print(out dir names and indent tests below)
         desc = self.checkForDirChange(testName)
 
         if self.avm2:
@@ -923,7 +923,7 @@ class PerformanceRuntest(RuntestBase):
             #        self.finalexitcode=1
 
     def printSingleIterationComparison(self, descStr, testName, metric):
-        '''Print output for single iteration when comparing 2 vms'''
+        '''print(output for single iteration when comparing 2 vms''')
         spdup = self.testData[testName][metric]['spdup']
         avg_spdup = self.testData[testName][metric]['avg_spdup']
         
@@ -942,7 +942,7 @@ class PerformanceRuntest(RuntestBase):
                                                           spdup, avg_spdup))
             
     def printMultiIterationComparison(self, descStr, testName, metric):
-        '''Print output for multiple iterations when comparing 2 vms'''
+        '''print(output for multiple iterations when comparing 2 vms''')
         relStdDev1 = rel_std_dev(self.testData[testName][metric]['results1'])
         relStdDev2 = rel_std_dev(self.testData[testName][metric]['results2'])
         spdup = self.testData[testName][metric]['spdup']

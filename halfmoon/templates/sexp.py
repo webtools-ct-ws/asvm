@@ -15,7 +15,7 @@ def parse(sexp):
     while i < length:
         c = sexp[i]
 
-        #print c, stack
+        #print(c, stack)
         if c == ';':
           while i + 1 < length and sexp[i + 1] != '\n':
             i += 1
