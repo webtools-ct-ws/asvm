@@ -186,35 +186,29 @@ class Configuration:
                 'OUTOPTION' : '-Fo',
                 'LIBPATH'   : '-LIBPATH:'
                 })
-	    if self._target[1] == "thumb2":
-            self._acvars.update({'LDFLAGS' : '-NODEFAULTLIB:"oldnames.lib"'})
-            if sys.platform.startswith('cygwin'):
-                self._acvars.update({'ASM' : '$(topsrcdir)/build/cygwin-wrapper.sh armasm.exe -nologo'})
-            else:
-                self._acvars.update({'ASM' : 'armasm.exe -nologo'})
             if self._target[1] == "thumb2":
-                    self._acvars.update({'LDFLAGS' : '-NODEFAULTLIB:"oldnames.lib"'})
-                    if sys.platform.startswith('cygwin'):
-                        self._acvars.update({'ASM' : '$(topsrcdir)/build/cygwin-wrapper.sh armasm.exe -nologo'})
-                    else:
-                        self._acvars.update({'ASM' : 'armasm.exe -nologo'})
+                self._acvars.update({'LDFLAGS' : '-NODEFAULTLIB:"oldnames.lib"'})
+                if sys.platform.startswith('cygwin'):
+                    self._acvars.update({'ASM' : '$(topsrcdir)/build/cygwin-wrapper.sh armasm.exe -nologo'})
+                else:
+                    self._acvars.update({'ASM' : 'armasm.exe -nologo'})
 
-        if self._target[1] == "arm":
-            self._acvars.update({'LDFLAGS' : '-NODEFAULTLIB:"oldnames.lib" -ENTRY:"mainWCRTStartup"'})
+            if self._target[1] == "arm":
+                self._acvars.update({'LDFLAGS' : '-NODEFAULTLIB:"oldnames.lib" -ENTRY:"mainWCRTStartup"'})
+                if sys.platform.startswith('cygwin'):
+                    self._acvars.update({'ASM' : '$(topsrcdir)/build/cygwin-wrapper.sh armasm.exe -nologo -arch 5T'})
+                else:
+                    self._acvars.update({'ASM' : 'armasm.exe -nologo -arch 5T'})
+
+            if self._target[1] == "x86_64":
+                if sys.platform.startswith('cygwin'):
+                   self._acvars.update({'MASM' : '$(topsrcdir)/build/cygwin-wrapper.sh ml64.exe -nologo -c '})
+                else:
+                   self._acvars.update({'MASM' : 'ml64.exe -nologo -c '})
+
             if sys.platform.startswith('cygwin'):
-                self._acvars.update({'ASM' : '$(topsrcdir)/build/cygwin-wrapper.sh armasm.exe -nologo -arch 5T'})
-            else:
-                self._acvars.update({'ASM' : 'armasm.exe -nologo -arch 5T'})
-
-        if self._target[1] == "x86_64":
-            if sys.platform.startswith('cygwin'):
-                self._acvars.update({'MASM' : '$(topsrcdir)/build/cygwin-wrapper.sh ml64.exe -nologo -c '})
-            else:
-               self._acvars.update({'MASM' : 'ml64.exe -nologo -c '})
-
-        if sys.platform.startswith('cygwin'):
-            self._acvars.update({'CXX'          : '$(topsrcdir)/build/cygwin-wrapper.sh cl.exe -nologo'})
-            self._acvars.update({'CC'           : '$(topsrcdir)/build/cygwin-wrapper.sh cl.exe -nologo'})
+                self._acvars.update({'CXX'          : '$(topsrcdir)/build/cygwin-wrapper.sh cl.exe -nologo'})
+                self._acvars.update({'CC'           : '$(topsrcdir)/build/cygwin-wrapper.sh cl.exe -nologo'})
 
         # Hackery! Make assumptions that we want to build with GCC 3.3 on MacPPC
         # and GCC4 on MacIntel
