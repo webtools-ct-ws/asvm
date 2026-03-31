@@ -186,7 +186,7 @@ class Configuration:
                 'OUTOPTION' : '-Fo',
                 'LIBPATH'   : '-LIBPATH:'
                 })
-	    if self._target[1] == "thumb2":
+            if self._target[1] == "thumb2":
                     self._acvars.update({'LDFLAGS' : '-NODEFAULTLIB:"oldnames.lib"'})
                     if sys.platform.startswith('cygwin'):
                         self._acvars.update({'ASM' : '$(topsrcdir)/build/cygwin-wrapper.sh armasm.exe -nologo'})
